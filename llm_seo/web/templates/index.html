@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LLM-SEO Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>LLM-SEO Dashboard</h1>
+      <p>Analyze and optimize content to improve LLM discovery and citation readiness.</p>
+
+      <form method="post" action="/analyze" class="card">
+        <label for="source">Markdown file path, URL, or raw text</label>
+        <textarea id="source" name="source" rows="7" placeholder="https://example.com/article or # Heading\nYour content"></textarea>
+        <div class="row">
+          <label>Min tokens <input type="number" name="min_tokens" value="300" /></label>
+          <label>Max tokens <input type="number" name="max_tokens" value="800" /></label>
+        </div>
+        <button type="submit">Run Analysis</button>
+      </form>
+
+      {% if result %}
+      <section class="grid">
+        <article class="card">
+          <h2>Citation Score: {{ result.citation_score }}</h2>
+          <p>{{ result.score_explanation }}</p>
+          <h3>Optimization Suggestions</h3>
+          <ul>
+            {% for s in result.suggestions %}<li>{{ s }}</li>{% endfor %}
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Chunk Visualization</h3>
+          {% for chunk in result.chunks %}
+            <div class="chunk">
+              <strong>{{ chunk.id }}</strong> — ~{{ chunk.token_estimate }} tokens
+              <p>{{ chunk.text }}</p>
+            </div>
+          {% endfor %}
+        </article>
+
+        <article class="card">
+          <h3>Suggested Rewrite (optimized markdown excerpt)</h3>
+          <pre>{{ result.optimized_markdown }}</pre>
+        </article>
+
+        <article class="card">
+          <h3>JSON Report</h3>
+          <pre>{{ result.report_json }}</pre>
+        </article>
+      </section>
+      {% endif %}
+    </main>
+  </body>
+</html>

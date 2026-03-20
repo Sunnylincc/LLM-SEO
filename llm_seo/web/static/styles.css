@@ -1,0 +1,60 @@
+:root {
+  color-scheme: light dark;
+  font-family: Inter, system-ui, sans-serif;
+}
+body {
+  margin: 0;
+  background: #101624;
+  color: #e8ecf3;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+.card {
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: #0f172a;
+}
+textarea,
+input {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #475569;
+  background: #020617;
+  color: #f8fafc;
+  padding: 0.6rem;
+}
+button {
+  margin-top: 0.8rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.chunk {
+  border-top: 1px solid #334155;
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+}
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
